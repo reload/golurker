@@ -1,0 +1,13 @@
+name: golurker
+version: 0.1.0
+
+authors:
+  - Thomas Fini Hansen <xen@xen.dk>
+
+targets:
+  golurker:
+    main: src/golurker.cr
+
+crystal: '>= 1.19.1'
+
+license: MIT
