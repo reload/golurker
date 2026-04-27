@@ -1,6 +1,8 @@
 # golurker
 
-TODO: Write a description here
+Minimal status checker for Go front pages.
+
+A quick hack.
 
 ## Installation
 

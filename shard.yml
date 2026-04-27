@@ -11,3 +11,13 @@ targets:
 crystal: '>= 1.19.1'
 
 license: MIT
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+
+  crystal-gql:
+    github: itsezc/crystal-gql
+
+  dotenv:
+    github: drum445/dotenv
