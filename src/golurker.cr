@@ -25,11 +25,25 @@ module Golurker
     if site_timestamp >= timestamp
       "<span style='color: darkgreen'>OK</span>"
     else
+      difference = Time::Span.new(seconds: timestamp - site_timestamp)
       if timestamp > (Time.utc - 1.hour).to_unix
-        "<span style='color: darkyellow'>Pending #{site_timestamp} #{timestamp}</span>"
+        "<span style='color: darkyellow'>Pending, #{format_time_span(difference)} older</span>"
       else
-        "<span style='color: darkred'>Error #{site_timestamp} #{timestamp}</span>"
+        "<span style='color: darkred'>Error, #{format_time_span(difference)} older</span>"
       end
+    end
+  end
+
+  def self.format_time_span(span : Time::Span) : String
+    case
+    when span.total_weeks > 1
+      "#{span.total_weeks.round(2)} week(s)"
+    when span.total_days > 1
+      "#{span.total_days.round(2)} day(s)"
+    when span.total_hours > 1
+      "#{span.total_hours.round(2)} hour(s)"
+    else
+      "#{span.total_seconds} second(s)"
     end
   end
 
