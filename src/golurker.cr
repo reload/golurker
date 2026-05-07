@@ -15,6 +15,10 @@ module Golurker
     timestamp = Go.get_frontpage_timestamp("delingstjenesten.dk")
 
     ECR.render("view/index.ecr");
+  rescue ex
+    error = ex.to_s
+
+    ECR.render("view/error.ecr");
   end
 
   get "/check/:index/:stamp" do |env|
@@ -32,6 +36,8 @@ module Golurker
         "<span style='color: darkred'>Error, #{format_time_span(difference)} older</span>"
       end
     end
+  rescue ex
+    "<span style='color: darkred'>Internal error: #{ex}</span>"
   end
 
   def self.format_time_span(span : Time::Span) : String
